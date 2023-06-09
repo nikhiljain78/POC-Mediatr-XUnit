@@ -10,8 +10,8 @@ namespace MediatorCQRS_NUnit.Services.Interface
     {
         List<TEntity> GetALL();
         void Add(TEntity entity);
-        int Delete(TEntity entity);
-        int Update(TEntity entity);
+        void Delete(TEntity entity);
+        void Update(TEntity entity);
         void Save();
     }
 }

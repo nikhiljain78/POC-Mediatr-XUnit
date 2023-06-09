@@ -38,7 +38,7 @@ namespace MediatorCQRS_NUnit.Services.Implementation
             throw new NotImplementedException();
         }
 
-        public int Update(T entity)
+        public void Update(T entity)
         {
             throw new NotImplementedException();
         }
