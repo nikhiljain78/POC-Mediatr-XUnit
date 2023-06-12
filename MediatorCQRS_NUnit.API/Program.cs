@@ -4,6 +4,7 @@ using MediatorCQRS_NUnit.Application;
 using MediatorCQRS_NUnit.Services;
 using MediatorCQRS_NUnit.Services.Implementation;
 using MediatorCQRS_NUnit.Services.Interface;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureApplication(builder.Configuration);
-
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
+builder.Services.AddSingleton(new ApplicationDbContext(builder.Configuration.GetConnectionString("DatabaseConnection")));
+//builder.Services.AddDbContext<ApplicationDbContext>();
+    //options => options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection")));
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 var app = builder.Build();
 
